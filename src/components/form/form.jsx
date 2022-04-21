@@ -18,7 +18,7 @@ export const Form = () => {
         // console.log(newData)
         console.log(formData)
     }, [formData, dispatch])
-
+    console.log(formData)
     const {
         register,
         handleSubmit,
@@ -41,11 +41,11 @@ export const Form = () => {
                         <div className={'form__title'}>Layer name</div>
                     </div>
                     <input className={'form__input'} type="text" title={'Object name'}
-                           placeholder={'Object name'} {...register('dataLayer', {
-                        required: true,
-                        maxLength: 25,
-                        value: formData.dataLayer
-                    })}/>
+                           placeholder={'Object name'}
+                           {...register('dataLayer', {
+                               maxLength: 25,
+                               value: formData.dataLayer
+                           })}/>
                 </div>
                 {errors.data && <i className={'errorStyle'}>Field required</i>}
                 <div className={'form__item'}>
@@ -53,34 +53,37 @@ export const Form = () => {
                         <div className={'form__title'}>Primary color</div>
                     </div>
                     <input className={'form__input'} type="text"
-                           title={'Primary action color. Used for buttons and links.'} {...register('primaryColor', {
-                        required: true,
-                        maxLength: 25,
-                        value: formData.primaryColor
-                    })}/>
+                           title={'Primary action color. Used for buttons and links.'}
+                           {...register('primaryColor', {
+                               required: true,
+                               maxLength: 7,
+                               value: formData.primaryColor
+                           })}/>
                 </div>
                 {errors.data && <i className={'errorStyle'}>Field required</i>}
                 <div className={'form__item'}>
                     <div className="form__info">
                         <div className={'form__title'}>Border radius</div>
                     </div>
-                    <input className={'form__input'} type="text"
-                           title={'Basic border radius for elements with rounded corners.\n' +
-                           '   * In px.'} {...register('borderRadius', {
-                        required: true,
-                        maxLength: 25,
-                        value: formData.borderRadius
-                    })}/>
+                    <input className={'form__input'} type="number"
+                           title={'Basic border radius for elements with rounded corners. * In px.'}
+                           {...register('borderRadius', {
+                               required: true,
+                               maxLength: 25,
+                               value: formData.borderRadius
+                           })}/>
                 </div>
                 {errors.data && <i className={'errorStyle'}>Field required</i>}
                 <div className={'form__item'}>
                     <div className="form__info">
                         <div className={'form__title'}>Dismissible</div>
                     </div>
-                    <select className={'form__input form__select'} {...register("dismissible", {
-                        required: true,
-                        value: formData.dismissible
-                    })}>
+                    <select className={'form__input form__select'}
+                            title={'If the consentbar is dismissible without consent actions'}
+                            {...register("dismissible", {
+                                required: true,
+                                value: formData.dismissible
+                            })}>
                         <option value="false">false</option>
                         <option value="true">true</option>
                     </select>
@@ -90,20 +93,27 @@ export const Form = () => {
                     <div className="form__info">
                         <div className={'form__title'}>Dismiss type</div>
                     </div>
-                    <input className={'form__input'} type="text" {...register('dismissType', {
-                        required: true,
-                        maxLength: 25,
-                        value: formData.dismissType
-                    })}/>
+                    <select className={'form__input form__select'}
+                            title={'Type of action to dismiss consentbar'}
+                            {...register("dismissType", {
+                                required: true,
+                                value: formData.dismissType
+                            })}>
+                        <option value="cross">cross</option>
+                        <option value="cross-faint">cross-faint</option>
+                        <option value="text">text</option>
+                    </select>
                 </div>
                 {errors.data && <i className={'errorStyle'}>Field required</i>}
                 <div className={'form__item'}>
                     <div className="form__info">
                         <div className={'form__title'}>Expiration</div>
                     </div>
-                    <input className={'form__input'} type="text" {...register('expiration', {
+                    <input className={'form__input'} type="number"
+                           title={'Period after which consentbar is shown again. Regardless of consent statuses. * In days'}
+                           {...register('expiration', {
                         required: true,
-                        maxLength: 25,
+                        maxLength: 3,
                         value: formData.expiration
                     })}/>
                 </div>
@@ -112,11 +122,15 @@ export const Form = () => {
                     <div className="form__info">
                         <div className={'form__title'}>Close type</div>
                     </div>
-                    <input className={'form__input'} type="text" {...register('closeType', {
-                        required: true,
-                        maxLength: 25,
-                        value: formData.closeType
-                    })}/>
+                    <select className={'form__input form__select'}
+                            title={'Type of the closing action for Precen.'}
+                            {...register("closeType", {
+                                required: true,
+                                value: formData.closeType
+                            })}>
+                        <option value="cross">cross</option>
+                        <option value="tab">tab</option>
+                    </select>
                 </div>
                 {errors.data && <i className={'errorStyle'}>Field required</i>}
                 <input className={'send__btn'} type="submit"/>

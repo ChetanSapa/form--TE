@@ -1,9 +1,9 @@
-const SET_DATA = 'SET_DATA'
+const SEND_DATA = 'SEND_DATA'
 const SET_NEW_DATA = 'SET_NEW_DATA'
 const initialState = {
-    dataLayer: "dataLayer",
-    primaryColor: "#f98305",
-    borderRadius: 6,
+    dataLayer: "",
+    primaryColor: "",
+    borderRadius: '',
     dismissible: false,
     dismissType: "text",
     expiration: 365,
@@ -25,6 +25,6 @@ const formReducer = (state = initialState, action) => {
             return state
     }
 }
-export const setData = (data) => ({type: SET_DATA, payload: data})
+export const sendData = (data) => ({type: SEND_DATA, payload: data})
 export const setNewData = (newData) => ({type: SET_NEW_DATA, payload: newData})
 export default formReducer;

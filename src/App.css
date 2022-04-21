@@ -25,7 +25,7 @@
 .form__info{
     display: flex;
     flex-direction: column;
-    width: 39%;
+    width: 44%;
 }
 .form__title {
     font-size: 16px;
@@ -34,7 +34,7 @@
 
 .form__input {
     height: 30px;
-    width: 59%;
+    width: 55%;
     padding-left: 10px;
     border-radius: 5px;
     outline: none;
