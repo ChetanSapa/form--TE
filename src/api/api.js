@@ -1,28 +1,29 @@
-import {sendData, setNewData} from "../store/form-reducer";
+import {setNewData} from "../store/form-reducer.ts";
 
 const url = 'https://fedamian.blob.core.windows.net/damian/assets/options.json'
-export const getData = () => {
+export const getFormData = () => {
     return dispatch => {
-        fetch(url,{
-            headers:{
-                "Access-Control-Allow-Origin" : "*",
-                "Access-Control-Allow-Credentials" : true
+        fetch(url, {
+            headers: {
+                'Authorization': '80ee579c-b01e-0001-1db0-55695d000000',
+                'x-ms-date': '2022-04-21T18:47:45.0259453Z',
+                'x-ms-version': '2009-09-19',
+                'Content-type': 'application/json; charset=UTF-8',
+
             },
             mode: 'no-cors', // no-cors, *cors, same-origin
-            })
+        })
             .then(response => response.json())
-            .then(json => dispatch(setNewData(json)))
+            .then(json => dispatch(setNewData(json.parse())))
     }
 }
 
 export const sendFormData = (data) => {
     return dispatch => {
-        fetch(url + 'posts', {
+        fetch(url + 'someAPI', {
             method: 'POST',
             body: JSON.stringify({
-                // title: data.firsName,
-                // body: data.secondName,
-                // userId: data.occupation,
+                data
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -30,37 +31,8 @@ export const sendFormData = (data) => {
         })
             .then(response => response.json())
             .then(response => {
-                dispatch(sendData(data),
-                    console.log(response)
+                dispatch(setNewData(data),
                 )
             })
     }
 }
-
-
-
-
-
-
-//
-// const headers = new Headers({
-//     'Content-Type': 'application/json'
-// });
-// const options = {
-//     headers,
-//     method: 'GET', // *GET, POST, PUT, DELETE, etc.
-//     mode: 'cors', // no-cors, *cors, same-origin
-//     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-//     credentials: 'include', // include, *same-origin, omit
-//     redirect: 'follow', // manual, *follow, error
-//     referrerPolicy: 'no-referrer',
-//
-// };
-// export const getData = () => {
-//     return  dispatch => {
-//         fetch(url, options).then((response)=>{
-//             console.log(response.json());
-//             dispatch(setData(response.json()))
-//         })
-//     }
-// }
